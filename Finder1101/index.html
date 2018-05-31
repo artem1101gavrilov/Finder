@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+		<script type="text/javascript">
+
+		var game = new Phaser.Game(900, 650, Phaser.CANVAS, 'example', { preload: preload, create: create, update: update, render: render });
+
+		function preload() {
+			game.load.image('backgroundGame', 'room.jpg');
+			game.load.image('FonNiz', 'fon.jpg');
+			
+			game.load.image('Ochki', 'ochki.png');
+			game.load.image('Morkovka', 'mork18.png');
+			game.load.image('Ruchka', 'pen.png');
+			game.load.image('Chainik', 'teapot.png');
+		}
+
+		//кнопки
+		var button1; // налево
+		var button2; // направо 
+		var PlayerCar; // главная машина
+		var Car1; //одна машина
+		var Car2; // вторая машина
+		var Car3; 
+		var stateText; // текст для гейм овер
+		var gameover; // состояние игра-конец игры
+		var score; //итоговый счет
+		
+		var backgroundLevel1;
+		var FonNiz;
+		var ochki;
+		var morkovka;
+		var chainik;
+		var ruchka;
+		
+		var Textochki; 
+		var Textmorkovka; 
+		var Textchainik; 
+		var Textruchka; 
+		
+		function create() {
+			game.physics.startSystem(Phaser.Physics.ARCADE);
+			
+			backgroundLevel1 = game.add.sprite(0, 0, 'backgroundGame');
+			FonNiz = game.add.sprite(0, 600, 'FonNiz');
+			
+			ochki= game.add.sprite(760, 270, 'Ochki');
+			ochki.inputEnabled = true;
+			ochki.input.start(0, true);
+			ochki.events.onInputDown.add(selectochki);
+			game.physics.enable(ochki, Phaser.Physics.ARCADE);
+			
+		    morkovka= game.add.sprite(340, 370, 'Morkovka');
+			morkovka.inputEnabled = true;
+			morkovka.input.start(0, true);
+			morkovka.events.onInputDown.add(selectmorkovka);
+			game.physics.enable(morkovka, Phaser.Physics.ARCADE);
+			
+		    chainik= game.add.sprite(0, 310, 'Chainik');
+			chainik.inputEnabled = true;
+			chainik.input.start(0, true);
+			chainik.events.onInputDown.add(selectchainik);
+			game.physics.enable(chainik, Phaser.Physics.ARCADE);
+			
+		    ruchka= game.add.sprite(720, 110, 'Ruchka');
+			ruchka.inputEnabled = true;
+			ruchka.input.start(0, true);
+			ruchka.events.onInputDown.add(selectruchka);
+			game.physics.enable(ruchka, Phaser.Physics.ARCADE);
+			
+			Textochki = game.add.text(50,610,' ', { font: '30px Arial', fill: '#fff' });
+			Textochki.visible = true;
+			Textochki.text = "Очки\n";
+			
+			Textmorkovka = game.add.text(250,610,' ', { font: '30px Arial', fill: '#fff' });
+			Textmorkovka.visible = true;
+			Textmorkovka.text = "Морковка\n";
+			
+			Textchainik = game.add.text(450,610,' ', { font: '30px Arial', fill: '#fff' });
+			Textchainik.visible = true;
+			Textchainik.text = "Чайник\n";
+			
+			Textruchka = game.add.text(650,610,' ', { font: '30px Arial', fill: '#fff' });
+			Textruchka.visible = true;
+			Textruchka.text = "Ручка\n";
+		}
+		
+		function update() {
+		}
+		
+
+		function render() {
+
+		}
+		
+		function selectochki(item, pointer) {
+			ochki.kill();
+			Textochki.visible = false;
+		}
+		
+		function selectmorkovka(item, pointer) {
+			morkovka.kill();
+			Textmorkovka.visible = false;
+		}
+		
+		function selectchainik(item, pointer) {
+			chainik.kill();
+			Textchainik.visible = false;
+		}
+		
+		function selectruchka(item, pointer) {
+			ruchka.kill();
+			Textruchka.visible = false;
+		}
+		
+		</script>
+
+    </body>
+</html>
